@@ -13,5 +13,32 @@ let song = new Audio();
 function playSong(){
     song.src = music_name;
     console.log(song)
+    play_btn.addEventListener('click',function(){
+        if(!isPlaying){
+            song.play();
+            isPlaying = true;
+            total_time = song.duration;
+            range.max = total_time;
+            play_img.src = "img/pause.png";
+        }else{
+            song.pause();
+            isPlaying = false;
+            play_img.src = "img/play.png";
+        }
+       song.addEventListener('ended',function(){
+            song.currentTime = 0
+            song.pause();
+            isPlaying = false;
+            range.value = 0;
+            play_img.src = "img/play.png";
+        })
+        song.addEventListener('timeupdate',function(){
+            range.value = song.currentTime;
+        })
+        range.addEventListener('change',function(){
+            song.currentTime = range.value;
+        })
+       
+    })
 }
 window.onload = playSong;
