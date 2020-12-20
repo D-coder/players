@@ -9,3 +9,9 @@ let total_time = 0;
 let currentTime = 0;
 let isPlaying = false;
 let song = new Audio();
+
+function playSong(){
+    song.src = music_name;
+    console.log(song)
+}
+window.onload = playSong;
