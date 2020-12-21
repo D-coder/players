@@ -40,5 +40,20 @@ function playSong(){
         })
        
     })
+    document.body.onkeyup = function(e){
+        if(e.keyCode == 32){
+            if(!isPlaying){
+                song.play();
+                isPlaying = true;
+                total_time = song.duration;
+                range.max = total_time;
+                play_img.src = "img/pause.png";
+            }else{
+                song.pause();
+                isPlaying = false;
+                play_img.src = "img/play.png";
+            }
+        }
+    }
 }
 window.onload = playSong;
